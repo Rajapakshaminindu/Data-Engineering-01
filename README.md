@@ -1,6 +1,6 @@
 # RetailFlow – End-to-End Data Engineering Lakehouse
 
-**Building a modern data engineering pipeline using real-world e-commerce data.**
+<<Building a modern data engineering pipeline using real-world e-commerce data.>>
 
 ## About the Project
 
