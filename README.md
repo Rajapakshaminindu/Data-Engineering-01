@@ -38,7 +38,7 @@ Operations dashboard tracking delivery logistics, on-time SLA adherence, average
 
 ---
 
-## 🏛️ Lakehouse Architecture & Medallion Design
+** 🏛️ Lakehouse Architecture & Medallion Design
 
 RetailFlow implements the industry-standard **Medallion Architecture**, guaranteeing data reliability, auditability, and analytical performance:
 
@@ -112,7 +112,7 @@ DIVIDE(
 On Time Delivery Rate = 1 - DIVIDE([Delayed Orders Count], [Total Delivered Orders], 0)
 ```
 
----
+
 
 ## 📁 Repository Structure
 
