@@ -1,0 +1,27 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment Variables
+.env
+
+# Large raw & intermediate data files (can be regenerated via pipeline)
+RetailFlow/data/raw/*.csv
+RetailFlow/data/bronze/*.parquet
+RetailFlow/data/silver/*.parquet
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

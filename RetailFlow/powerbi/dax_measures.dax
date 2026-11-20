@@ -1,0 +1,73 @@
+// ====================================================================
+// RetailFlow - Power BI DAX Measures Reference
+// ====================================================================
+
+// --- Core Sales & Revenue Measures ---
+
+Total Revenue = 
+SUM(gold_order_summary[payment_total])
+
+Total Orders = 
+DISTINCTCOUNT(gold_order_summary[order_id])
+
+Total Delivered Orders = 
+CALCULATE(
+    DISTINCTCOUNT(gold_order_summary[order_id]),
+    gold_order_summary[order_status] = "delivered"
+)
+
+Total Canceled Orders = 
+CALCULATE(
+    DISTINCTCOUNT(gold_order_summary[order_id]),
+    gold_order_summary[order_status] = "canceled"
+)
+
+Total Unique Customers = 
+DISTINCTCOUNT(gold_order_summary[customer_unique_id])
+
+Average Order Value (AOV) = 
+DIVIDE([Total Revenue], [Total Orders], 0)
+
+Total Items Sold = 
+SUM(gold_order_summary[total_items])
+
+Average Items Per Order = 
+DIVIDE([Total Items Sold], [Total Orders], 0)
+
+Total Shipping Revenue = 
+SUM(gold_order_summary[shipping_cost])
+
+Average Shipping Cost = 
+DIVIDE([Total Shipping Revenue], [Total Orders], 0)
+
+// --- Delivery & Operations Performance Measures ---
+
+Delivery Success Rate = 
+DIVIDE([Total Delivered Orders], [Total Orders], 0)
+
+Cancellation Rate = 
+DIVIDE([Total Canceled Orders], [Total Orders], 0)
+
+Average Delivery Time (Days) = 
+AVERAGE(gold_order_summary[delivery_days])
+
+Delayed Orders Count = 
+CALCULATE(
+    COUNTROWS(gold_order_summary),
+    gold_order_summary[is_delayed] = 1
+)
+
+On Time Delivery Rate = 
+1 - DIVIDE([Delayed Orders Count], [Total Delivered Orders], 0)
+
+// --- Growth & Trend Intelligence Measures ---
+
+Monthly Sales MoM Growth = 
+VAR CurrentMonthRev = [Total Revenue]
+VAR PrevMonthRev = 
+    CALCULATE(
+        [Total Revenue],
+        DATEADD(gold_order_summary[order_purchase_timestamp].[Date], -1, MONTH)
+    )
+RETURN
+    DIVIDE(CurrentMonthRev - PrevMonthRev, PrevMonthRev, 0)

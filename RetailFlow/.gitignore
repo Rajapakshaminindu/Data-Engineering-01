@@ -1,9 +1,27 @@
+# Virtual Environment
 .venv/
+venv/
+env/
+
+# Python Cache
 __pycache__/
 *.pyc
-data/raw/*
-!data/raw/.gitkeep
-data/sample/*
-!data/sample/.gitkeep
+*.pyo
+*.pyd
+
+# Jupyter
 .ipynb_checkpoints/
+
+# Environment Variables
 .env
+
+# Large raw & intermediate data files (can be regenerated via pipeline)
+data/raw/*.csv
+data/bronze/*.parquet
+data/silver/*.parquet
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
